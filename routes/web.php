@@ -1,11 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TransactionController;
 
-Route::get('foo', function () {
-    return foo();
-});
+Route::view('/', 'welcome');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('transaction', TransactionController::class);
