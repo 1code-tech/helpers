@@ -1,11 +1,10 @@
 <?php
 
-use Closure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('transaction')) {
-    function transaction(Closure $callback, int $attempts = 1): mixed
+    function transaction(callable $callback, int $attempts = 1): mixed
     {
         if (DB::transactionLevel() > 0) {
             return $callback();
@@ -23,5 +22,13 @@ if (!function_exists('active_link')) {
         }
 
         return Route::is($names) ? $class : null;
+    }
+}
+
+if (!function_exists('flash')) {
+    function flash(string $message, string $type = 'success'): void
+    {
+        session()->flash('flash.message', $message);
+        session()->flash('flash.type', $type);
     }
 }
