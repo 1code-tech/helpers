@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlashController;
+use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\TransactionController;
 
 Route::view('/', 'welcome');
@@ -15,3 +16,5 @@ Route::view('active-link/settings/security', 'active-link.settings.security')->n
 
 Route::get('flash', [FlashController::class, 'index'])->name('flash');
 Route::post('flash', [FlashController::class, 'store'])->name('flash.store');
+
+Route::get('youtube', YouTubeController::class)->name('youtube');

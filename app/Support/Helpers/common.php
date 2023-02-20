@@ -32,3 +32,44 @@ if (!function_exists('flash')) {
         session()->flash('flash.type', $type);
     }
 }
+
+if (!function_exists('youtube_video_id')) {
+    function youtube_video_id(string $url): string|null
+    {
+        $regex = '~
+            ^(?:https?://)?                          # Optional protocol
+            (?:www[.])?                              # Optional sub-domain
+            (?:youtube[.]com/watch[?]v=|youtu[.]be/) # Mandatory domain name (w/ query string in .com)
+            ([^&]{11})                               # Video id of 11 characters as capture group 1
+            ~x';
+
+        preg_match($regex, $url, $matches);
+
+        return $matches[1] ?? null;
+    }
+}
+
+if (!function_exists('youtube_embed_url')) {
+    function youtube_embed_url(string $url): string|null
+    {
+        $id = youtube_video_id($url);
+
+        return "https://www.youtube.com/embed/{$id}";
+    }
+}
+
+
+
+
+
+
+
+
+if (!function_exists('youtube_embed_url')) {
+    function youtube_embed_url(string $url): string
+    {
+        $id = youtube_video_id($url);
+
+        return "https://www.youtube.com/embed/{$id}";
+    }
+}
