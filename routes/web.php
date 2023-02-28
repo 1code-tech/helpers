@@ -18,3 +18,5 @@ Route::get('flash', [FlashController::class, 'index'])->name('flash');
 Route::post('flash', [FlashController::class, 'store'])->name('flash.store');
 
 Route::get('youtube', YouTubeController::class)->name('youtube');
+
+Route::view('front-route', 'front-route.index')->name('front-route');

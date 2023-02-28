@@ -58,18 +58,11 @@ if (!function_exists('youtube_embed_url')) {
     }
 }
 
-
-
-
-
-
-
-
-if (!function_exists('youtube_embed_url')) {
-    function youtube_embed_url(string $url): string
+if (!function_exists('front_route')) {
+    function front_route(string $name, mixed $params = []): string
     {
-        $id = youtube_video_id($url);
+        $url = route("front.{$name}", $params, false);
 
-        return "https://www.youtube.com/embed/{$id}";
+        return str_replace('/front', config('front.url'), $url);
     }
 }
